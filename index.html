@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 Intellectual Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <link rel="icon" href="images/favicon.png">
+</head>
+<body onload="startGame()">
+    <audio id="bgm" src="audio/bgm.mp3" loop></audio>
+
+    <!-- // When the page is open, it performs a welcome/ start page. -->
+    <div class="container">
+        <div class="bgm-controllor-div">
+            <img id="bgm_control" onclick="play()"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAAAXNSR0IArs4c6QAAArZJREFUaEPtmetNHDEURj8qgFQQqACoIEkFpAOgAqACkgqSVJBQAaECoAKgAqACoAKiE40ly5qHr+0de1draX/t+MrH9/XZ3tCKjo0V5dIabNk8W9pjh5K2JV1Juq+5GSXBfko68WAA+9NBPs0NWRLsRdLWAMBfSfzw5OsckCXB3iMWDJQPGTEl7ZO5wfxVEp5AXiwiH2uC+ZDF83GRYN87TxxJOjAEVJF8XDTYtw6IovJV0qmk3UjIrHycC8xnoc/hRX4fIyHN+VgDzGfZ67yINzcjIV0+/hr7vjaYvzbgLPkI4P4QXEtgbo2WfASsV7q1CGbJxy+Sbvq81jqYv2bC9HcAsRJgnyVdr8EiS2zMZ6EIRnm4Bh0zf+qbtcfYoWUqHgv3GH0GvfcQHBqXMhTZLe4zUAfhKZnjP/n0GCRJ0zkGBL0DIOtoFgwo+gZCNWU0CwYUIZg6mgTrky9WwCbBKAQcCHNGc2Dk1F0OUTe3ObASYQhbc2Dou/PKHiMNuA+59daRrTxqgTkBEPZMbqt4F0DpXOYcW/p2JsWBg4fAwBg5jQhI6ZemgyaNmQeG3PEh4gECGPrl0GPG1BpMYBhD/xEaqYP7eIrQ2ACGtpIKhW0zGMkbiloL5I6kqTex3M1LAmNSatk/7jw+thG5G+dsmz3mJnLX/sPgqrOugk1NsdodspcMhkGqJOV27DGBfkOb6L3j61lViTBMDsVwPVQweoyv+AHh2cf6kM68T1Nujfg/y2MR9s2frCxYKXUzeBlV8pbK4jZCOpRHlvl8i8QaVCu1wFgYfS724a8PerSt1ARL7ZNAPk8dhGuCscCUsv/WVebRSlwbDJ1Ij4zVpUCRn5P9sjaYyx3CEsCxd2iENdV0SoP+t9kKmAN0AsBVOw6ZTgREATlDrYFZS/7g92uwYls5k6F/DSG9N6R+pJwAAAAASUVORK5CYII=" />
+        </div>
+        <div class="heading">
+            <h1 class="title">
+                <a href="#">
+                    <span>&nbsp;</span>
+                    <span>2</span>
+                    <span>0</span>
+                    <span>4</span>
+                    <span>8</span>
+                </a>
+            </h1>
+            <div class="score-container">
+                <div class="current-score">0</div>
+            </div>
+        </div>
+
+        <!-- the main grid container -->
+        <section id="grid-container" class="grid-container"></section>
+        <section class="controls">
+            <video class="video" controls></video>
+            <button class="reset btn btn-outline-primary" title="Reset" onclick="newGame()">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAnVJREFUWEftlz1uFTEUhb8UpIUdJKwgIBZA6IGEHgTUFJAVACsgDTVEoScCemABCNgB7ABaKEBfZEd+L9fz5yGKIq70NPNmPPbxuef+eIVTZiunDA9nEtAF4Blwfw62Wxm6BLwAvLbOdbiflknuJWZkqHWuI3KnAMouEtCy/QC+AAfAx3Q/ypNTAL0E7g5c5QPwFPA6yKYAkqHdEaAEIqBbgAx22hRAeUJdJrDzhYbWk8C3AX/5nUN0pZHotWotgJzU6NKFG0GAREzK0MUuploBCSovHInc9zIl6MyWDF2rgZoDUJ8sMpOfi4EK/Un04UkBcu1HKW95X3XdSQISyDdgLTETstQK6ArwALiZFnkDPAc+Vfyoziw1OeouL49rAXQb2K8sfAd4VXn3p3huxMnakbUA+gWcqyz6G1itvDNJXk3vTJaWmWZA14G3PeGlG6MxAtiq6ShiaLPYgQUyqkOPa2FbgDSsFe6y+dzvtWPCjgCVwtsDooR3A1DAXeaYd8EAy83DMS6ToffpAxnyf2RzaMiMveCBmqjLSKiNmSPKjs1dW6xMYFZoa1FkY/OQde11mug7YHewYDVApY4EZ76Yw8qQDzfalYesN7lC76TepwVUWctCdpy8C1AZno41zXc2Vx1o7ZsMlHwgmFTt/ViKbb40GZPmhcw6gLLl08nXFLlhO9tXOgSlhspWVIHrwr7+ODqd/Exgqkz3AZKAsk3NhAhGpvy541wgjRrrVO6pSwLVjc9n6andrYvnojjAUwtDTLCC6WN19MnVrK0mhp7LBGJw/NNzmVvXNQLzmt3kczWST66CGB2VQzQ01j1N4/8D6qPvL22seiUljxOUAAAAAElFTkSuQmCC"/>
+            </button>
+            <br><br>
+            <button class="btn btn-record" title="Record">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAYZJREFUWEftl2FRAzEQhb8qAAeAAkAB4AAJSAAFgANwAA5AAeAACeAABzCPSTppuOYl17temen+uc4ku/nysttsZmyYzTaMh38HdANcGxXfgXvgYQi1nUI1QJHjDHhdFWpIICl1PDaQi78PCGQnTLwC7pxTadwpVBM7PdYv4ADQt5cNAaSFP4C9QPAIXPSigcHK/hR4SSB6J3iXQsqLE0DfFrsEdoOD8uop/JZ6z7XHmAMdhZ3GwC1ApbnKKakm0KLlQHI4dE49x6XSufPNgb4Th1vnXDme/tPbIioBWedKoHSTNubUQKpOKaj8+rWpgCKIvgsc6waSElIkgvwRZt1Ay9JuzrEFWiJRs0Jp6VrZswlNvrVH1hS0APQW7sl8U5MppIVVYeqhdIFPXmXpiaRgzQpV3hKd09zVIbD546A2h8YEWoidA6lviQ37KhBdvp81TV8O1PIOawVWO6P4RetqB+SkJj027S6GG5cyetVamK7b3gUffdw2TKMTZAtsgZziW4WcQj+BKUclRhFGaQAAAABJRU5ErkJggg=="/>
+                </button>
+                <br><br><br><br>
+                <p id="student_id">Develop with <a href="README.pdf" style="text-decoration: none; color: red;">❤</a> 
+                    By P 1 9 0 8 3 5 1</p>
+            
+        </section>
+        <div id="overlay-1">
+            <div id="text-1">
+                Game Over...😢 <br/>
+                Come on 🙌~ You can make it! <br/>
+                <button class="btn btn-outline-primary" onclick="rePlay(2)">
+                RESTART</button>
+            </div>
+        </div>
+        <div id="overlay-2">
+            <div id="text-2">
+                Great Job!😎✨ <br/>
+                <button class="wide btn btn-outline-again" onclick="rePlay(1)">
+                Play Again</button>
+            </div>
+        </div>
+        <div id="overlay-3" onclick="endIntroOverLay()">
+            <div id="text-3" class="animate">
+                Welcome to P1908351's 2048 Game <br>
+                Click anywhere to start 😃
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/status.js" defer></script>
+<script src="js/utilities.js" defer></script>
+<script src="js/jquery-3.4.1.min.js" defer></script>
+<script src="js/gameLogic.js" defer></script>
+<script src="js/animation.js" defer></script>
+<script src="js/record.js"></script>
+<script src="js/bgm-control.js"></script>
+</html>

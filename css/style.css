@@ -1,0 +1,303 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+body {
+  background-color: #ccffffb7;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.grid-container {
+  position: relative;
+  width: 460px;
+  height: 460px;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 10px;
+  background-color: #CCFFCC;
+}
+
+.grid-cell {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  background-color: #e4e49c;
+}
+
+.number-cell {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 6px;
+  font-size: 60px;
+  font-family: Arial;
+  line-height: 100px;
+  text-align: center;
+  /* -webkit-text-fill-color: transparent;文字填充为透明色让设置的渐变色显示出来，一定要设置为透明色不然设置的渐变色无法显示出来，会被遮挡住 */
+
+}
+
+.controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.title {
+  position: relative;
+  margin: 25px auto 15px auto;
+  text-align: center;
+  color: #06f369;
+  font-size: 35px;
+  font-weight: bold;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn,
+#current-score {
+  display: inline-block;
+  font-weight: 400;
+  color: #0344f7;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  min-width: 150px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-outline-primary {
+  color: #8f8e66;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e63a34;
+  color: #fff;
+  /* should in consistensy with the back ground color */
+  border-color: #000;
+}
+
+.btn-record {
+  color: #8f8e66;
+}
+
+.btn-record:hover {
+  background-color: #269b4d;
+  color: #fff;
+  /* should in consistensy with the back ground color */
+  border-color: #000;
+}
+.btn-outline-again {
+  color: #8f8e66;
+}
+
+.btn-outline-again:hover {
+  background-color:khaki;
+  color: #fff;
+  /* should in consistensy with the back ground color */
+  border-color: #000;
+}
+.btn-outline-primary:focus {
+  border: #8f7a66;
+}
+
+.wide {
+  min-width: 250px;
+}
+
+.current-score {
+  position: relative;
+  display: inline-block;
+  background: #99cccc;
+  padding: 10px 20px 0 20px;
+  font-size: 30px;
+  height: 45px;
+  line-height: 47px;
+  font-weight: bold;
+  border-radius: 3px;
+  color: white;
+  margin-bottom: 0px;
+  text-align: center;
+  min-width: 100px;
+  padding-top: 30px;
+}
+
+.current-score:after {
+  content: "Score";
+  position: absolute;
+  width: 100%;
+  top: 6px;
+  left: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 13px;
+  text-align: center;
+  color: #06f369;
+  margin-top: 7px;
+}
+
+#overlay-1,
+#overlay-2,
+#overlay-3 {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  cursor: pointer;
+  font-family: "Indie Flower", cursive;
+}
+
+#text-1,
+#text-2,
+#text-3 {
+  font-family: "Indie Flower", cursive;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 80px;
+  text-align: center;
+  color: white;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+#text-3 {
+  font-size: 80px;
+}
+.rePlay {
+  position: relative;
+  margin: 400px auto;
+  top: 50%;
+  left: 50%;
+}
+
+h1.title a {
+  text-decoration: none;
+}
+a {
+  color: #776e65;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* h1.title {
+  font-size: 60px;
+  line-height: 66px;
+} */
+h1.title {
+  font-size: 31px;
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+  float: left;
+}
+
+h1 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+div {
+  display: block;
+}
+.bgm-controllor-div {
+  display: block;
+  float: left;
+  clear: both;
+}
+.heading:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.score-container {
+  float: right;
+  text-align: right;
+  height: 30%;
+  /* padding: 10px 20px; */
+}
+
+.container {
+  width: 500px;
+  margin: 25px auto 25px;
+}
+
+h1 span {
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  -webkit-animation: bounce 0.5s ease infinite alternate;
+  font-size: 67px;
+
+  color: #fdf904;
+  text-shadow: 0 1px 0 rgb(168, 167, 167), 0 2px 0 rgb(168, 167, 167),
+    0 3px 0 rgb(168, 167, 167), 0 4px 0 rgb(168, 167, 167),
+    0 5px 0 rgb(168, 167, 167), 0 6px 0 transparent, 0 7px 0 transparent,
+    0 8px 0 transparent, 0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+h1 span:nth-child(2) {
+  -webkit-animation-delay: 0.1s;
+}
+
+h1 span:nth-child(3) {
+  -webkit-animation-delay: 0.2s;
+}
+
+h1 span:nth-child(4) {
+  -webkit-animation-delay: 0.3s;
+}
+
+/* ANIMATION */
+@-webkit-keyframes bounce {
+  100% {
+    top: -13px;
+    text-shadow: 0 1px 0 rgb(168, 167, 167), 0 2px 0 rgb(168, 167, 167),
+      0 3px 0 rgb(168, 167, 167), 0 4px 0 rgb(168, 167, 167),
+      0 5px 0 rgb(168, 167, 167), 0 6px 0 rgb(168, 167, 167),
+      0 7px 0 rgb(168, 167, 167), 0 8px 0 rgb(168, 167, 167),
+      0 79px 0 rgb(168, 167, 167), 0 50px 25px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.heading {
+  height: 90px;
+}
+
+.video{
+  position: relative;
+  justify-content: center;
+  display: none;
+  margin: 0 auto;
+}
+
+p#student_id {
+  font-size: 28px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
